@@ -1,0 +1,39 @@
+[project]
+name = "skyreelsinfer"
+version = "0.1.0"
+description = "the first and most advanced open-source human-centric video foundation model "
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "accelerate>=1.4.0",
+  "bitsandbytes==0.45.0",
+  "diffusers",
+  "imageio==2.36.1",
+  "opencv-python==4.10.0.84",
+  "para-attn",
+  # torch & stuff
+  "torch>=2.5.1",
+  "torchao==0.7.0",
+  "torchaudio>=2.5.1",
+  "torchvision>=0.20.1",
+  "transformers==4.46.3",
+  "xformers==0.0.29.post1",
+]
+
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu124", marker = "platform_system != 'Darwin'" }]
+xformers = [{ index = "pytorch-cu124", marker = "platform_system != 'Darwin'" }]
+torchvision = [
+  { index = "pytorch-cu124", marker = "platform_system != 'Darwin'" },
+]
+torchaudio = [
+  { index = "pytorch-cu124", marker = "platform_system != 'Darwin'" },
+]
+diffusers = { git = "https://github.com/huggingface/diffusers.git", rev = "464374fb87610c53b2cf81e08d3df628fada3ce4" }
+para-attn = { git = "https://github.com/Howe2018/ParaAttention.git" }
